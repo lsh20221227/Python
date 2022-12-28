@@ -1,0 +1,150 @@
+# day-5-1-exercise
+'''
+student_heights = input("Input a list of student heights ").split()
+
+for n in range(0, len(student_heights)):
+  student_heights[n] = int(student_heights[n])
+
+total=0
+for i in student_heights:
+    total+=i
+
+count=0
+for i in student_heights:
+    count+=1
+
+print(total/count)
+'''
+
+#day-5-2-exercise
+'''
+# 🚨 Don't change the code below 👇
+student_scores = input("Input a list of student scores ").split()
+for n in range(0, len(student_scores)):
+  student_scores[n] = int(student_scores[n])
+print(student_scores)
+# 🚨 Don't change the code above 👆
+
+#Write your code below this row 👇
+
+max=student_scores[0]
+for i in range(len(student_scores)):
+    if student_scores[i] > max:
+        max=student_scores[i]
+
+print(f'The highest score in the class is : {max}')
+
+'''
+
+#day-5-3-exercise
+'''
+total=0
+for i in range(2,101,2):
+    total+=i
+print(total)
+'''
+
+#Day-5-4-FizzBuzz
+'''
+for i in range(1,101):
+    if i%3==0 and i%5==0:
+       print('FizzBuzz')
+    elif i%3==0:
+        print('Fizz')
+    elif i%5==0:
+        print('Buzz')
+    else:
+        print(i)
+'''
+
+# PyPassword Generator
+#Password Generator Project
+
+import random
+letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+
+print("Welcome to the PyPassword Generator!")
+nr_letters= int(input("How many letters would you like in your password?\n"))
+nr_symbols = int(input(f"How many symbols would you like?\n"))
+nr_numbers = int(input(f"How many numbers would you like?\n"))
+
+#Eazy Level - Order not randomised:
+#e.g. 4 letter, 2 symbol, 2 number = JduE&!91
+
+password=[]
+for i in range(nr_letters):
+    password.append(letters[random.randint(0,len(letters)-1)])
+
+for i in range(nr_symbols):
+    password.append(symbols[random.randint(0, len(symbols) - 1)])
+
+for i in range(nr_numbers):
+    password.append(numbers[random.randint(0,len(numbers)-1)])
+    
+password=''.join(password)
+print(password)
+
+#Hard Level - Order of characters randomised:
+#e.g. 4 letter, 2 symbol, 2 number = g^2jk8&P
+
+'''
+r_password=[]
+for i in range(nr_letters):
+    r_password.append(letters[random.randint(0,len(letters)-1)])
+
+for i in range(nr_symbols):
+    r_password.append(symbols[random.randint(0, len(symbols) - 1)])
+
+for i in range(nr_numbers):
+    r_password.append(numbers[random.randint(0,len(numbers)-1)])
+
+
+random.shuffle(r_password) #데이터의 순서를 무작위로 섞어주는 함수 셔플후 자동으로 리턴값이 기존 리스트에 저장되어진다.
+r_password=''.join(r_password)
+print(r_password)
+'''
+
+#----------------------------------------------------------
+#Solution
+#Eazy Level
+# password = ""
+
+# for char in range(1, nr_letters + 1):
+#   password += random.choice(letters)
+
+# for char in range(1, nr_symbols + 1):
+#   password += random.choice(symbols)
+
+# for char in range(1, nr_numbers + 1):
+#   password += random.choice(numbers)
+
+# print(password)
+
+#Hard Level
+password_list = []
+
+for char in range(1, nr_letters + 1):
+  password_list.append(random.choice(letters))
+
+for char in range(1, nr_symbols + 1):
+  password_list += random.choice(symbols)
+
+for char in range(1, nr_numbers + 1):
+  password_list += random.choice(numbers)
+
+print(password_list)
+random.shuffle(password_list)
+print(password_list)
+
+password = ""
+for char in password_list:
+  password += char
+
+print(f"Your password is: {password}")
+
+# 리스트에서 랜덤으로 추출한 문자를 이어붙이는 방식
+# 솔루션을 보니 보다 간편해보임
+
+
