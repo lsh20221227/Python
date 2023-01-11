@@ -1,123 +1,97 @@
-
-'''
 from turtle import *
-
-timmy = Turtle()
-timmy.shape("turtle")
-timmy.color("blue")
-
-# 점선 그리면서 나아가기
-
-for i in range(10):
-    timmy.forward(10)
-    timmy.penup()
-    timmy.forward(10)
-    timmy.pendown()
-
 '''
-
-# 3 ~ 10각형 그리기
-'''
-import random
-colours = ["CornflowerBlue", "DarkOrchid", "IndianRed", "DeapSkyBlue", "LightSeaGreen","wheat","SlateGray","SeaGreen"]
-
-def draw_shape(num_sides):
-    angle = 360 / num_sides
-    for _ in range(num_sides):
-
-        timmy.forward(100)
-        timmy.right(angle)
-
-for shape_side_n in range(3,11):
-    timmy.color(random.choice(colours))
-    draw_shape(shape_side_n)
-
-
-#########################################################
-for i in range(4):
-    timmy.forward(100)
-    timmy.right(90)
-for i in range(5):
-    timmy.forward(100)
-    timmy.right(72)
-for i in range(6):
-    timmy.forward(100)
-    timmy.right(60)
-for i in range(8):
-    timmy.forward(100)
-    timmy.right(45)
-'''
-
-# -------------------------------------------------------
-# 무작위 행보
-'''
-from turtle import *
-import random
 tim = Turtle()
+screen = Screen()
 
-colours = ["CornflowerBlue", "DarkOrchid", "IndianRed", "DeepSkyBlue", "LightSeaGreen","wheat","SlateGray","SeaGreen"]
-directions= [0, 90 ,180, 270]
-tim.pensize(10)
-tim.speed("fastest")
+def move_forwards():
+    tim.forward(10)
 
-for i in range(300):
-    tim.forward(30)
-    tim.setheading(random.choice(directions))
-    tim.color(random.choice(colours))
-
+screen.listen()
+screen.onkey(key='space',fun=move_forwards)
+screen.exitonclick()
 '''
-#-------------------------------------------------------------------------------------------
-# 임의의 색상 RGB 생성하기
+#----------------------------------------------------
+# Make an Etch-a-Sketch
+# W - Forwards
+# S - Backwards
+# A - Counter -Clockwise
+# D - Clockwise
+# C = clear Drawing
 '''
+tim = Turtle()
+screen =Screen()
+
+def move_forwards():
+    tim.forward(10)
+
+def move_backwards():
+    tim.backward(10)
+
+def move_counter():
+    new_heading = tim.heading() +10
+    tim.setheading(new_heading)
+
+def move_clockwise():
+    new_heading=tim.heading() -10
+    tim.setheading(new_heading)
+
+def clear():
+    tim.clear()
+    tim.penup()
+    tim.home()
+    tim.pendown()
+
+
+
+screen.listen() # 이 명령어를 실행시켜야 키 입력모드가 실행되어 입력된 키에 반응한다.
+screen.onkey(key='w',fun=move_forwards)
+screen.onkey(key='s',fun=move_backwards)
+screen.onkey(key='a',fun=move_counter)
+screen.onkey(key='d',fun=move_clockwise)
+screen.onkey(key='c',fun=clear)
+exitonclick()
+'''
+#----------------------------------------------------------------------
+# turtle racing project
 from turtle import *
 import random
-t = Turtle()
+screen = Screen()
+screen.setup(width=500, height=400)
+user_bet=screen.textinput(title="Make your bet", prompt="Which turtle will win the race? Enter a color: ")
+colors = ["red", "orange", "yellow", "green", "blue", "purple"]
+y_position = [-70, -40, -10, 20, 50, 80]
+all_turtle=[]
+is_on = False
+
+for turtle_index in range(0, 6):
+    new_turtle = Turtle(shape="turtle")
+    new_turtle.color(colors[turtle_index])
+    new_turtle.penup()
+    new_turtle.goto(x=-230, y=y_position[turtle_index])
+    all_turtle.append(new_turtle)
 
 
-colormode(255)
+if user_bet:
+    is_on = True
 
-def random_color():
-    r=random.randint(0,255)
-    g=random.randint(0,255)
-    b=random.randint(0,255)
-    return (r,g,b)
-
-t.pensize(10)
-t.speed("fastest")
-
-directions= [0, 90 ,180, 270]
-for i in range(100):
-    t.color(random_color())
-    t.forward(15)
-    t.setheading(random.choice(directions))
-'''
-
-
-#-----------------------------------------------------------------
-# 스피로그래프 그리기
-'''
-from turtle import *
-import random
-t = Turtle()
-t.speed("fastest")
-colormode(255)
-def random_color():
-    r=random.randint(0,255)
-    g=random.randint(0,255)
-    b=random.randint(0,255)
-    return (r,g,b)
+while is_on:
+    for turtle in all_turtle:
+        if turtle.xcor() > 230:
+            is_on=False
+            winning_turtle = turtle.pencolor()
+            if user_bet == winning_turtle:
+                print(f"You win! The {winning_turtle} turtle is the winner")
+            else:
+                print(f"You lose! The {winning_turtle} turtle is the winner")
+        rand_move = random.randint(0, 10)
+        turtle.forward(rand_move)
 
 
 
-def draw_spirograph(size_of_gap):
-    for i in range(int(360/size_of_gap)):
-        t.color(random_color())
-        t.circle(100)
-        t.setheading(t.heading() + size_of_gap)
+screen.exitonclick()
 
-draw_spirograph(5)
-'''
-#----------------------------------------------------------------------------
+
+
 
 
 
