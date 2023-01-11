@@ -1,131 +1,123 @@
-# DAY 18
-from colorgram import *
 
 '''
-rgb_colors = []
-colors=colorgram.extract('image.jpg',30)
-for color in colors:
-    r = color.rgb.r
-    g = color.rgb.g
-    b = color.rgb.b
-    new_color = (r,g,b)
-    rgb_colors.append(new_color)
+from turtle import *
 
-print(rgb_colors)
+timmy = Turtle()
+timmy.shape("turtle")
+timmy.color("blue")
+
+# 점선 그리면서 나아가기
+
+for i in range(10):
+    timmy.forward(10)
+    timmy.penup()
+    timmy.forward(10)
+    timmy.pendown()
+
 '''
 
-#[(234, 222, 113), (28, 109, 184), (225, 61, 90), (224, 151, 90), (124, 153, 205), (215, 130, 162), (139, 89, 52), (38, 194, 107), (105, 108, 190), (140, 177, 27), (240, 155, 184), (186, 48, 80), (109, 192, 156), (224, 63, 55), (186, 18, 37), (20, 182, 210), (146, 221, 172), (39, 53, 115), (136, 217, 230), (239, 172, 157), (176, 174, 227), (25, 149, 113), (36, 36, 69), (187, 218, 9), (76, 28, 33), (75, 35, 29)]
-
-
-##########################################
+# 3 ~ 10각형 그리기
 '''
-colors=colorgram.extract('image.jpg',30)
-#print(colors)
-#first_color = colors[0]
-#rgb=first_color.rgb
-#print(rgb)
-
-def extract_color(a):
-    """parameter is colorgram.extract('image.jpg',6)"""
-    image_color=[]
-    for i in a:
-        rgb=i.rgb
-        r=rgb[0]
-        g=rgb[1]
-        b=rgb[2]
-        image_color.append((r,g,b))
-    return image_color
-
-
-rgb=extract_color(colors)
-print(rgb)
-'''
-#-----------------------------------------------------------------------------------------
-# 스팟 페인팅 프로젝트
-# 점의 크기는 약 20, 점들의 간격은 약 50
-# 구글에서 다운받은 이미지 추출한 색상 중에 255에 가까운 (흰색) 색상들은 지우고 시작
-
-#from turtle import *
-#import random
-
-color_list=[(234, 222, 113), (28, 109, 184), (225, 61, 90), (224, 151, 90), (124, 153, 205), (215, 130, 162), (139, 89, 52), (38, 194, 107), (105, 108, 190), (140, 177, 27), (240, 155, 184), (186, 48, 80), (109, 192, 156), (224, 63, 55), (186, 18, 37), (20, 182, 210), (146, 221, 172), (39, 53, 115), (136, 217, 230), (239, 172, 157), (176, 174, 227), (25, 149, 113), (36, 36, 69), (187, 218, 9), (76, 28, 33), (75, 35, 29)]
-
-#-----------------------------------------------------------------------------------
-# SOLUTION
-
-import turtle as turtle_module
 import random
-turtle_module.colormode(255)
-tim = turtle_module.Turtle()
-tim.speed("fastest")
-tim.penup()
-tim.hideturtle() #화살표 숨기기
+colours = ["CornflowerBlue", "DarkOrchid", "IndianRed", "DeapSkyBlue", "LightSeaGreen","wheat","SlateGray","SeaGreen"]
 
-tim.setheading(225)
-tim.forward(300)
-tim.setheading(0)
-number_of_dots = 100
+def draw_shape(num_sides):
+    angle = 360 / num_sides
+    for _ in range(num_sides):
 
-for dot_count in range(1, number_of_dots +1):
-    tim.dot(20, random.choice(color_list))
-    tim.forward(50)
+        timmy.forward(100)
+        timmy.right(angle)
 
-    if dot_count % 10 == 0:
-        tim.setheading(90)
-        tim.forward(50)
-        tim.setheading(180)
-        tim.forward(500)
-        tim.setheading(0)
+for shape_side_n in range(3,11):
+    timmy.color(random.choice(colours))
+    draw_shape(shape_side_n)
 
 
-
-############################################################################################################
+#########################################################
+for i in range(4):
+    timmy.forward(100)
+    timmy.right(90)
+for i in range(5):
+    timmy.forward(100)
+    timmy.right(72)
+for i in range(6):
+    timmy.forward(100)
+    timmy.right(60)
+for i in range(8):
+    timmy.forward(100)
+    timmy.right(45)
 '''
+
+# -------------------------------------------------------
+# 무작위 행보
+'''
+from turtle import *
+import random
+tim = Turtle()
+
+colours = ["CornflowerBlue", "DarkOrchid", "IndianRed", "DeepSkyBlue", "LightSeaGreen","wheat","SlateGray","SeaGreen"]
+directions= [0, 90 ,180, 270]
+tim.pensize(10)
+tim.speed("fastest")
+
+for i in range(300):
+    tim.forward(30)
+    tim.setheading(random.choice(directions))
+    tim.color(random.choice(colours))
+
+'''
+#-------------------------------------------------------------------------------------------
+# 임의의 색상 RGB 생성하기
+'''
+from turtle import *
+import random
 t = Turtle()
 
-t.speed("fastest")
+
 colormode(255)
 
+def random_color():
+    r=random.randint(0,255)
+    g=random.randint(0,255)
+    b=random.randint(0,255)
+    return (r,g,b)
 
+t.pensize(10)
+t.speed("fastest")
 
-def circle_position(x,y):
-    t.penup()
-    t.setposition(x,y)
-    t.pendown()
-
-
-
-def draw_circle():
-    for i in range(10):
-        t.begin_fill()
-        t.circle(10)
-        t.end_fill()
-        t.penup()
-        t.forward(50)
-        t.pendown()
-        t.color(random.choice(color_list))
-
-x=-300
-y=-300
-for i in range(10):
-    circle_position(x,y)
-
-    draw_circle()
-    t.setheading(90)
-    t.penup()
-    t.forward(50)
-    t.pendown()
-    t.setheading(0)
-    y+=50
-
-exitonclick()
+directions= [0, 90 ,180, 270]
+for i in range(100):
+    t.color(random_color())
+    t.forward(15)
+    t.setheading(random.choice(directions))
 '''
 
-##########################################################################################
+
+#-----------------------------------------------------------------
+# 스피로그래프 그리기
+'''
+from turtle import *
+import random
+t = Turtle()
+t.speed("fastest")
+colormode(255)
+def random_color():
+    r=random.randint(0,255)
+    g=random.randint(0,255)
+    b=random.randint(0,255)
+    return (r,g,b)
 
 
 
+def draw_spirograph(size_of_gap):
+    for i in range(int(360/size_of_gap)):
+        t.color(random_color())
+        t.circle(100)
+        t.setheading(t.heading() + size_of_gap)
 
+draw_spirograph(5)
+'''
+#----------------------------------------------------------------------------
 
 
 
