@@ -1,0 +1,71 @@
+CSS 정리 
+
+알아두면 좋은 사이트들
+favicon.cc
+fonts.google.com
+www.flaticon.com
+loremipsumgenerator.com
+css3buttongenerator.com
+emojipedia.org
+colorhunt.co
+
+
+#　Selectors / id / class
+
+selectors 보다 id와 class가 우선시 되어진다.
+id와 class의 차이:
+id는 유일성 class는 여러개 가능
+
+# hover: 이미지위에 마우스를 올리면 배경색이 금색으로 
+img:hover{backgroun-color:gold;}
+
+# link 사용
+<link rel=“stylesheet” href=“~~~”>
+<link rel=“icon” href=“favicon.ico”>
+
+# 하이퍼링크 불러오기 <a></a>
+<a class=“fotter-link” href=“http://www.linkedin.com”>LikedIn</a>
+
+# img 불러오기
+<img class=“top-cloud” src=“images/cloud.png” alt=“cloud-img”>
+
+# <div> 콘텐츠 분할 요소
+ <div> 요소는 여러 HTML 요소들을 하나로 묶어주어 스타일을 변경하거나 특정 작업을 수행하기 위한 일종의 컨테이너(container)로 자주 사용됩니다.
+
+# Display 속성
+inline: 같은 라인 o 폭넓이 변경  x
+block: 같은 라인 x 폭넓이 변경 o
+inline-block: 같은 라인 o 폭넓이 변경 o
+None: 없었던 것처럼 사라짐 
+cf)visability:hidden – none처럼 요소는 사라지지만 해당 위치는 공백으로 유지되어진다.
+
+
+# CSS Position
+static
+relative: 화면의 다른 요소에 영향을 끼치지 않음
+absolute : 상위 개체에 따라 위치가 다르게 설정
+fixed : 스크롤 해도 해당위치에 고정되어짐.
+
+
+# 중앙 배치해보기
+text-align: center;  폭이 설정되지 않은 모든 것이 중앙배치
+
+margin: 0 auto 0 auto;
+margin: 0 auto;
+-블록 요소 & 폭설정 가능
+
+
+# img 옆에 text 놓고싶을 때
+특정 이미지 옆에 둘러쌓기
+float: right; ( 이미지가 왼쪽에 있을 경우)
+
+.text-description{clear:right;}	
+이미지가 오른쪽에 있을 경우에 이미지를 둘러쌓지 않고 text를 밑에 보내고싶을 경우에
+이미지가 있는 공간에 공백을 주어서 내려보냄
+clear:left 사용시 변화가 없다.
+
+
+# CSS Font
+font-size: 100% = 16px = 1em = 1rem 
+100% & 1em 은 상위 개체 size 상속되기 때문에 주의
+rem은 상위설정 무시 그 위의 size 변경에 따른 영향이 없음 추천 !!
